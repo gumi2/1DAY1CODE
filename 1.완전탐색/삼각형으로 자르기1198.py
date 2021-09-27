@@ -54,3 +54,22 @@
 10.0
 https://www.acmicpc.net/problem/1198
 '''
+def triWith(x,y,a,b,c):
+    result = (x[a]*y[b]+x[b]*y[c]+x[c]*y[a])-(x[b]*y[a]+x[c]*y[b]+x[a]*y[c])
+    result = abs(result)
+    return result/2
+N = int(input())
+x = []
+y = []
+p = []
+for i in range(N):
+    p = list(map(int,input().split()))
+    x.append(p[0])
+    y.append(p[1])
+min = 0
+for i in range(N):
+    for j in range(i+1,N):
+        for k in range(i+2,N):
+            if(min<triWith(x,y,i,j,k)):
+                min = triWith(x,y,i,j,k)
+print(min)

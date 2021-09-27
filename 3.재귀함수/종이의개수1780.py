@@ -31,3 +31,34 @@ N×N크기의 행렬로 표현되는 종이가 있다. 종이의 각 칸에는 -
 11
 https://www.acmicpc.net/problem/1780
 '''
+
+# 1. 각각 부위별로 잘라서 확인-> 같으면 pop -> i.count(1) 사용해서 개수확인
+
+import sys
+N = int(sys.stdin.readline())
+matrix = [list(map(int, sys.stdin.readline().split())) for _ in range(N)]
+def cutting(paper):
+    l = len(paper)
+    k = l//3
+    result = []
+    for x in range(0,l,3):
+        for y in range(0,l,3):
+            ret = []
+            for a in range(x,x+3):
+                for b in range(y,y+3):
+                    ret.append(paper[a][b])
+            if ret.count(0) == 9:
+                result.append(0)
+            elif ret.count(-1) == 9:
+                result.append(-1)
+
+            elif ret.count(1) == 9:
+                result.append(1)
+            else:
+                result.extend(ret)
+    return result
+a = []
+a = cutting(matrix)
+print(a.count(-1))
+print(a.count(0))
+print(a.count(1))

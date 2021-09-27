@@ -30,47 +30,17 @@ Tn = 1 + 2 + 3 + ... + n = n(n+1)/2
 프로그램은 표준출력을 사용한다. 각 테스트케이스에대해 정확히 한 라인을 출력한다. 만약 K가 정확히 3개의 삼각수의 합으로 표현될수 있다면 1을, 그렇지 않다면 0을 출력한다.
 https://www.acmicpc.net/problem/10448
 '''
-N = 44 #1000 보다 가장 작은 tlist의 개수
-tlist = [int(i*(i+1)/2) for i in range (1, 45)]
-print(tlist[::-1])
-result = int(input())
-cnt = 0
-double = 'a'
-triple = 'a'
-for i in range(len(tlist)):
-    if tlist[::-1][i] < result:
-        result -= tlist[::-1][i]
-        cnt += 1
-    if double == 'b':
-        break
-    if triple == 'b':
-        break
-    for j in range(len(tlist)):
-        if tlist[::-1][j] <= result:
-            cnt += 1
-            result -= tlist[::-1][j]
-        if result == 0:
-            double = 'b'
+from itertools import combinations_with_replacement
+def trinum(num):
+    return int(num*(num+1)/2)
+N = int(input())
+a = [int(input()) for i in range(N)]
+num = [int(i*(i+1)/2) for i in range(1,50) if int(i*(i+1)/2)<=1000]
+numL = list(combinations_with_replacement(num,3))
+for i in a:
+    for j in numL:
+        if i == sum(j):
+            print(1)
             break
-        if triple == 'b':
-            break
-        for k in range(len(tlist)):
-            if tlist[::-1][k] <= result and cnt != 0:
-                cnt += 1
-                result -= tlist[::-1][k]
-                print('결과값{0}'.format(result))
-                break
-            if tlist[::-1][k] < result:
-                cnt += 1
-                result -= tlist[::-1][k]
-                print('결과값{0}'.format(result))
-                break
-            if result == 0 or cnt>=3:
-                triple = 'b'
-                break
-print(cnt)
-if cnt == 3 and result ==0:
-    print(1)
-else:
-    print(0)
-# 뭔가 애매하다
+        if j == (990,990,990):
+            print(0)

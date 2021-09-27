@@ -49,38 +49,25 @@
 https://www.acmicpc.net/problem/2503
 답:https://jainn.tistory.com/36
 '''
-# 2503, 숫자 야구
 import sys
 from itertools import permutations
-
-n = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-num = list(permutations(n, 3))	# 순열로 3개씩 뽑음
-
+n = [i for i in range(1,10)]
+num = list(permutations(n,3))
 t = int(sys.stdin.readline())
 for _ in range(t):
-    test, s, b = map(int, sys.stdin.readline().split())
-    test = list(str(test))
-    removed_cnt = 0     # 배열에서 제거된 튜플 개수
-
-    # num : 3개 리스트
-    leng = len(num)
-    for i in range(leng):
-        s_cnt = b_cnt = 0   # 스트 개수, 볼 개수 0 초기화
-        i -= removed_cnt
-
+    test, s ,b = map(int, sys.stdin.readline().split())
+    test = str(test)
+    rv_cnt = 0
+    for i in range(len(num)):
+        i -= rv_cnt
+        b_cnt = s_cnt = 0
         for j in range(3):
-            test[j] = int(test[j])
-            if test[j] in num[i]:
-                if j == num[i].index(test[j]):
+            if int(test[j]) in num[i]:
+                if j == num[i].index(int(test[j])):
                     s_cnt += 1
                 else:
                     b_cnt += 1
-
         if s_cnt != s or b_cnt != b:
-            num.remove(num[i])      # 스트 개수, 볼 개수 다르면 배열에서 제거
-            removed_cnt += 1
-
+            num.remove(num[i])
+            rv_cnt +=1
 print(len(num))
-
-#이거 remove cnt 하는게 remove하면 사라지는데 인덱스는 그대로라서 그런거구나

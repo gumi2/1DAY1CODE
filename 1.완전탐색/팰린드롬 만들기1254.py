@@ -20,3 +20,16 @@ abab
 5
 https://www.acmicpc.net/problem/1254
 '''
+
+# s=input()
+#
+# for i in range(len(s)):
+#     if s[i:]==s[i:][::-1]: # 뒤집었을떄 같으면 지나간 숫자 개수 만큼 + 해주면 되는거임 ㄷㄷ
+#         print(len(s)+i)
+#         break
+
+text = input()
+for i in range(len(text)):
+    if text[i:] == text[i:][::-1]:
+        print(len(text)+i)
+        break

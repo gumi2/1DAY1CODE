@@ -30,3 +30,36 @@
 ((110(0101))(0010)1(0001))
 https://www.acmicpc.net/problem/1992
 '''
+# import sys
+# def qud(num, c , r):
+#     if num == 2:
+#         if a[r][c] == a[r+1][c] == a[r][c+1] == a[r+1][c+1]:
+#             if a[r][c] == 0:
+#                 return 0
+#             else:
+#                 return 1
+#         else:
+#             print('({0}{1}{2}{3})'.format(a[r][c],a[r][c+1], a[r+1][c], a[r+1][c+1]), end='')
+#
+#     else:
+#         qud(num//2, c, r)
+#         qud(num//2 , c+ num//2, r)
+#         qud(num//2, c, r + num//2)
+#         qud(num//2, c+num//2, r + num//2)
+# N = int(sys.stdin.readline())
+# a = [list(map(int,sys.stdin.readline().strip())) for _ in range(N)]
+# print('(',qud(N,0,0),')')
+
+N = int(input())
+L = []
+for i in range(N):
+    L += [[i for i in input()]]
+def f(X,Y,num):
+    n = L[X][Y]
+    for x in range(X, X+num):
+        for y in range(Y, Y+num):
+            if n != L[x][y]:
+                num //= 2
+                return '('+f(X, Y , num)+f(X, Y +num , num)+f(X + num, Y , num)+f(X+num, Y+num , num)+')'
+    return n
+print(f(0,0,N))

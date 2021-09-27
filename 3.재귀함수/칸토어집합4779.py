@@ -44,3 +44,41 @@
 - -   - -
 https://www.acmicpc.net/problem/4779
 '''
+# list = [0,1,3,2]
+#
+# def cutting(n):
+#     global a
+#     if n == 1:
+#         a[1] = ' '
+#     else:
+#         b = a//3
+#         for i in range(len(b), len(b) + b//3):
+#             a[i] = ' '
+'''
+zeze1004님의 풀이
+import sys
+
+def recursion(num):
+  if num == 1:
+    print('-', end='')
+  else:
+    recursion(num // 3)
+    print(' ' * (num // 3), end='')
+    recursion(num // 3)
+
+# 입력 받기
+for num in sys.stdin: #파일의 끝에서 멈추는게 이런거임?
+  recursion(3 ** int(num))
+  print()
+'''
+import sys
+def recursion(num):
+    if num == 1:
+        print('_', end = '')
+    else:
+        recursion(num//3)
+        print(' '*(num//3), end ='')
+        recursion(num//3)
+for i in sys.stdin:
+    recursion(3**int(i))
+    print()

@@ -23,3 +23,13 @@
 32
 https://www.acmicpc.net/problem/11399
 '''
+import sys
+N = int(input())
+time = list(map(int, sys.stdin.readline().split()))
+time.sort()
+result = 0
+x = N
+for i in range(N):
+    result = result + x*time[i]
+    x -=1
+print(result)

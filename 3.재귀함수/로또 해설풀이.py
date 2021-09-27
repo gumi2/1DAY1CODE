@@ -63,35 +63,13 @@
 3 5 8 13 21 34
 https://www.acmicpc.net/problem/6603
 '''
-import itertools
+from itertools import combinations
 import sys
-def listprint(a):
-    for j in range(len(a)):
-        if j == len(a)-1:
-            print(a[j])
-            break
-        print(a[j], end = ' ')
-i = 0
-r = []
-t = []
-while True:
-    t = list(map(int, sys.stdin.readline().split()))
-    r.append(t)
-    if r[i][0] == 0:
+while 1:
+    arr = input().split()
+    if arr.pop(0) == '0':
         break
-    t = []
-    i+=1
-r.pop(i)
-f = []
-for j in range(i):
-    r[j].pop(0)
-    f.append(list(itertools.combinations(r[j],6)))
-for k in range(i):
-    for h in range(len(f[k])):
-        listprint(f[k][h])
-        if h == len(f[k])-1:
-            print()
+    for i in combinations(arr, 6):
+        print(" ".join(i))
 
-    # for k in range(len(f)):
-    #      print(k)
-    #      print(f[k])
+    print()

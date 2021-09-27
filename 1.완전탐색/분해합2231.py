@@ -18,3 +18,36 @@
 198
 https://www.acmicpc.net/problem/2231
 '''
+# N = int(input())
+# i = 0
+# t = N
+# while True:
+#     if (t <10):
+#         i += 1
+#         break
+#     t = t/10
+#     i +=1
+# if(N<9):
+#     print(0)
+#     exit()
+# for j in range(N-9*i,N):
+#     result = 0
+#     result = j + sum(map(int, str(j)))
+#     if (result == N):
+#         print(j)
+#         break
+#     if (j == N-1):
+#         print(0)
+#         break
+#런타임 에러코드
+def numSum(a):
+    result = 0
+    result = a + sum(map(int,str(a)))
+    return result
+N = int(input())
+for i in range(1,N+1): # 자기자신이 분해합인 경우가 있나?
+    if (N == numSum(i)):
+        print(i)
+        break
+    if(i == N):
+        print(0)

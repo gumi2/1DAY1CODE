@@ -22,3 +22,26 @@ N(1 ≤ N ≤ 100,000)개의 로프가 있다. 이 로프를 이용하여 이런
 20
 https://www.acmicpc.net/problem/2217
 '''
+import itertools
+import sys
+N = int(sys.stdin.readline())
+w = [int(sys.stdin.readline()) for i in range(N)]
+# max = 0
+# now = 0
+# for i in range(1,N+1):
+#     t = list(itertools.combinations(w,i))
+#     for j in t:
+#         now = len(j)*min(j)
+#         if max < now:
+#             max = now
+#
+# print(max)
+#부루트 포스로 풀면 메모리초과
+now = 0
+max = 0
+w.sort(reverse = True)
+for i in range(len(w)):
+    now = (i+1)*w[i]
+    if max < now:
+        max = now
+print(max)

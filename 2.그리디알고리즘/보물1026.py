@@ -26,3 +26,23 @@ S의 최솟값을 출력하는 프로그램을 작성하시오.
 18
 https://www.acmicpc.net/problem/1026
 '''
+import sys
+N = int(input())
+A =list(map(int, sys.stdin.readline().split()))
+B =list(map(int, sys.stdin.readline().split()))
+min = 0
+now = 0
+for i in range(N):
+    now = A.pop(A.index(min(A))) * B.pop(B.index(max(B)))
+    if now < min:
+        min = now
+print(min)
+# import sys
+# N = int(input())
+# A =list(map(int, sys.stdin.readline().split()))
+# B =list(map(int, sys.stdin.readline().split()))
+# result = 0
+# for i in range(N):
+#     result += A.pop(A.index(min(A))) * B.pop(B.index(max(B)))
+#
+# print(result)

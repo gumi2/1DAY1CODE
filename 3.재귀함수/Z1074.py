@@ -37,3 +37,60 @@ r행 c열을 몇 번째로 방문했는지 출력한다.
 63
 https://www.acmicpc.net/problem/1074
 '''
+# def divide(size, start_row, start_col):
+#     global cnt
+#     if size == 2:
+#         if start_row == r and start_col == c:  # 왼쪽 위
+#             print(cnt)
+#             return
+#         cnt += 1
+#         if start_row == r and start_col + 1 == c:  # 오른쪽 위
+#             print(cnt)
+#             return
+#         cnt += 1
+#         if start_row + 1 == r and start_col + 1 == c:  # 왼쪽 아래
+#             print(cnt)
+#             return
+#         cnt += 1
+#         if start_row + 1 == r and start_col + 1 == c:  # 오른쪽 아래
+#             print(cnt)
+#             return
+#         cnt += 1
+#     else:
+#         divide(size // 2, start_row, start_col)
+#         divide(size // 2, start_row, start_col + size // 2)
+#         divide(size // 2, start_row + size // 2, start_col)
+#         divide(size // 2, start_row + size // 2, start_col + size // 2)
+#
+# N, r, c = map(int, input().split())
+# cnt = 0
+# divide(2 ** N, 0, 0)
+import sys
+N , r, c = map(int, sys.stdin.readline().split())
+cnt = 0
+def divide(size, col, row):
+    global cnt
+    if size == 2:
+        if col == c and row == r:
+            print(cnt)
+            return
+        cnt +=1
+        if col+1 ==c and row ==r:
+            print(cnt)
+            return
+        cnt +=1
+        if col == c and  row+1 == r:
+            print(cnt)
+            return
+        cnt +=1
+        if col +1 ==c and row+1 == r:
+            print(cnt)
+            return
+        cnt +=1
+    else:
+        divide(size//2, col, row)
+        divide(size//2, col + size//2, row)
+        divide(size//2, col, row + size//2)
+        divide(size//2, col + size//2, row+ size//2)
+
+divide(2**N,0,0)

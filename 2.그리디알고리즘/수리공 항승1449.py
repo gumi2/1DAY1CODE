@@ -25,3 +25,39 @@
 2
 https://www.acmicpc.net/problem/1449
 '''
+# -> 처음에N개 에서 빼줌
+# -> 이줄 for 로 i 랑 i+1 로 각각 시작함
+# -> 덮은거 만큼 i 에서 + 해서 시작
+# ->i가 마지막에 도달하면 break 해줌
+# 테이프 L , 개수 N , 점 p
+# import sys
+# N , L = map(int , sys.stdin.readline().split())
+# p = list(map(int, sys.stdin.readline().split()))
+# p.sort()
+# cnt = 0
+# for i in range(N):
+#     i += cnt
+#     if i >= N-1:
+#         break
+#     if p[i]-0.5 + L >= p[i+1] +0.5:
+#         cnt +=1
+#         for j in range(i+1,N):
+#             if j+1 > N-1:
+#                 break
+#             if p[i]-0.5+L > p[j+1]+0.5:
+#                 cnt += 1
+# print(N-cnt)
+'''나중에 이유찾기'''
+import sys
+N , L = map(int , sys.stdin.readline().split())
+p = list(map(int, sys.stdin.readline().split()))
+p.sort()
+tape =1
+end = p[0]-0.5 +L
+for i in p:
+    if end > i:
+        continue
+    else:
+        tape +=1
+        end = i-0.5+L
+print(tape)
